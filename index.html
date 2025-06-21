@@ -67,22 +67,40 @@
       return sorted[0][1][0];
     }
     function analyze(){
-      let input = document.getElementById('combinedInput').value.trim().toLowerCase();
-      let raw = input.includes('/')?input.split('/') : input.split('');
-      if(raw.length!==6){ document.getElementById('predictionResult').innerText='❌ กรุณากรอกให้ครบ 6 ตัว'; return; }
-      let main=raw.slice(0,3), ref=raw.slice(3);
-      if(isAllSame(main)) [main, ref] = [ref, main];
-      // ตัวมากสุด: ทุกตำแหน่งที่มากสุดต้องเหมือนกันหมด
-      const maxPosArr = getAllMaxPositions(main);
-      let maxResult = "P";
-      for(let idx of maxPosArr) {
-        if(main[idx] !== ref[idx]) { maxResult = "B"; break; }
-      }
-      // ตัวน้อยสุดปกติ
-      const minPos=getMinOrMaxPos(main,'min');
-      const minResult = main[minPos]===ref[minPos]?'P':'B';
-      document.getElementById('predictionResult').innerHTML=`✅ ตัวน้อยสุด:<strong>${minResult}</strong> | ตัวมากสุด:<strong>${maxResult}</strong>`;
-      new Audio('https://freesound.org/data/previews/341/341695_6261194-lq.mp3').play();
+  let input = document.getElementById('combinedInput').value.trim().toLowerCase();
+  let raw = input.includes('/')?input.split('/') : input.split('');
+  if(raw.length!==6){ document.getElementById('predictionResult').innerText='❌ กรุณากรอกให้ครบ 6 ตัว'; return; }
+  let main=raw.slice(0,3), ref=raw.slice(3);
+
+  if(isAllSame(main)) [main, ref] = [ref, main];
+
+  // หาตำแหน่งที่มากสุดทั้งหมดใน main
+  const maxPosArr = getAllMaxPositions(main);
+  // เอาค่าตัวมากสุดที่ตำแหน่งนั้นใน main กับ ref มาเก็บ
+  const mainMaxValues = maxPosArr.map(idx => main[idx]);
+  const refMaxValues = maxPosArr.map(idx => ref[idx]);
+  // ถ้า mainMaxValues ทุกตัวเหมือนกัน และ refMaxValues ทุกตัวเหมือนกัน
+  let maxResult = "-";
+  if(isAllSame(mainMaxValues) && isAllSame(refMaxValues)) {
+    maxResult = (mainMaxValues[0] === refMaxValues[0]) ? "P" : "B";
+  } else {
+    maxResult = "B"; // ถ้าเจอความต่างถือว่าเป็น B
+  }
+
+  // สูตรตัวน้อยสุด logic เดิม
+  function getMinOrMaxPos(arr, mode='min') {
+    const count = {};
+    arr.forEach((v,i)=> count[v]?count[v].push(i):count[v]=[i]);
+    const sorted = Object.entries(count).sort((a,b)=>(mode==='min'? a[1].length-b[1].length : b[1].length-a[1].length));
+    return sorted[0][1][0];
+  }
+  const minPos=getMinOrMaxPos(main,'min');
+  const minResult = main[minPos]===ref[minPos]?'P':'B';
+
+  document.getElementById('predictionResult').innerHTML=`✅ ตัวน้อยสุด:<strong>${minResult}</strong> | ตัวมากสุด:<strong>${maxResult}</strong>`;
+  new Audio('https://freesound.org/data/previews/341/341695_6261194-lq.mp3').play();
+}
+
     }
     function submitResult(actual){
       let input=document.getElementById('combinedInput').value.trim().toLowerCase();
