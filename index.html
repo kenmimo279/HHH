@@ -1,56 +1,125 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🧠 ทำนายบาคาร่า Vibes วัยรุ่น</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baccarat Prediction Youth</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <div style="background:#111; padding:15px; border-radius:12px; margin-bottom:20px; font-size:0.95rem; line-height:1.6; color:#f0f0f0">
-      <h2 style="color:#00ffe7; text-align:center; margin-top:0">📘 สูตรการทำนาย</h2>
-      <p><strong>สูตรตัวน้อยสุด:</strong> ดูจากฝ่ายที่มีความหลากหลายน้อยกว่าในเค้าไพ่หลักหรือรอง จากนั้นหาตัวที่มีจำนวนน้อยที่สุด และดูว่ามันอยู่ตำแหน่งไหน แล้วไปเปรียบเทียบตำแหน่งเดียวกันในอีกฝ่าย:</p>
-      <ul>
-        <li>ถ้าค่าเหมือนกัน → ทำนาย P</li>
-        <li>ถ้าค่าต่างกัน → ทำนาย B</li>
-      </ul>
-      <p><strong>สูตรตัวมากสุด:</strong> ใช้วิธีคล้ายกัน แต่เปลี่ยนเป็นตัวที่มีจำนวนมากที่สุดแทน:</p>
-      <ul>
-        <li>ถ้าตำแหน่งของตัวมากสุดตรงกันทั้งสองฝ่าย → ทำนาย P</li>
-        <li>ถ้าไม่ตรงกัน → ทำนาย B</li>
-      </ul>
-      <p><em>สูตรทั้งหมดจะเริ่มบันทึกผลจริงลง DNA ตั้งแต่รอบที่ 2 เป็นต้นไป</em></p>
+    <h2>📘 สูตรการทำนาย</h2>
+    <ul>
+      <li>สูตรตัวน้อยสุด: ดูจากฝ่ายที่มีความหลากหลายน้อยกว่า หาตำแหน่งตัวน้อยสุด เทียบค่ากับอีกฝ่าย
+        <ul><li>เหมือนกัน → ทาย P</li><li>ต่างกัน → ทาย B</li></ul>
+      </li>
+      <li>สูตรตัวมากสุด: ดูจากฝ่ายที่มีความหลากหลายน้อยกว่า หาตำแหน่งตัวมากสุดทั้งหมด เทียบค่ากับอีกฝ่าย
+        <ul><li>ตำแหน่งที่มากสุดทั้งหมดต้อง “เหมือนกันหมด” → ทาย P</li><li>มีต่างกันแม้แต่ตำแหน่งเดียว → ทาย B</li></ul>
+      </li>
+      <li>ถ้าเค้าไพ่หลักเหมือนกันหมด ใช้เค้าไพ่รองแทน</li>
+    </ul>
+    <hr>
+    <label>กรอกเค้าไพ่ 6 ตัว (p/b/p/b/p/b หรือ pbpbpb):</label>
+    <input id="combinedInput" type="text" placeholder="เช่น pbpppb หรือ p/b/p/p/p/b">
+    <button class="btn-analyze" onclick="analyze()">🔍 ทำนาย</button>
+    <div id="predictionResult" class="prediction-summary"></div>
+    <div class="btn-group">
+      <button class="btn-result" onclick="submitResult('P')">✔ ผลจริง P</button>
+      <button class="btn-result banker" onclick="submitResult('B')">✔ ผลจริง B</button>
+      <button class="btn-result tie" onclick="submitResult('T')">✔ ผลจริง T</button>
+      <button class="btn-control" onclick="undoDNA()">↩ ย้อนกลับ</button>
     </div>
-    <h1>🔮 ทำนายบาคาร่า Style วัยรุ่น</h1>
-    <div>
-      <label>เค้าไพ่หลัก (3 ตัว):</label>
-      <input id="mainInput" type="text" placeholder="เช่น p/b/b">
-      <label>เค้าไพ่รอง (3 ตัว):</label>
-      <input id="refInput" type="text" placeholder="เช่น p/p/b">
-      <button onclick="analyze()" class="btn-analyze">🔍 ทำนาย</button>
-      <div class="prediction-summary" id="predictionResult"></div>
-      <div class="btn-group">
-        <button onclick="submitResult('P')" class="btn-result">✔ ผลจริง P</button>
-        <button onclick="submitResult('B')" class="btn-result banker">✔ ผลจริง B</button>
-        <button onclick="submitResult('T')" class="btn-result tie">✔ ผลจริง T</button>
-        <button onclick="undoDNA()" class="btn-control">↩ ย้อนกลับ</button>
-      </div>
-    </div>
-
     <div class="dna-box">
       <h3>🧬 สถิติ DNA</h3>
       <div class="btn-group">
-        <button onclick="clearDNA()" class="btn-control">🧹 ล้าง DNA</button>
+        <button class="btn-control" onclick="clearDNA()">🧹 ล้าง DNA</button>
       </div>
-      <p class="dna-label">สูตรตัวน้อยสุด:</p>
-      <div id="dna1">-</div>
-      <div class="percent-box" id="percent1"></div>
-      <p class="dna-label">สูตรตัวมากสุด:</p>
-      <div id="dna2">-</div>
-      <div class="percent-box" id="percent2"></div>
+      <p class="dna-label">สูตรตัวน้อยสุด:</p> <div id="dna1">-</div> <div id="percent1" class="percent-box">-</div>
+      <p class="dna-label">สูตรตัวมากสุด:</p> <div id="dna2">-</div> <div id="percent2" class="percent-box">-</div>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script>
+    let dna1 = [], dna2 = [], backupDNA = [];
+    window.onload = () => {
+      const saved = localStorage.getItem('dnaBackup');
+      if (saved) {
+        const { dna1: d1, dna2: d2 } = JSON.parse(saved);
+        dna1 = d1 || []; dna2 = d2 || [];
+        renderDNA();
+      }
+    };
+    function getAllMaxPositions(arr) {
+      const count = {};
+      arr.forEach((v, i) => count[v] ? count[v].push(i) : count[v] = [i]);
+      const maxCount = Math.max(...Object.values(count).map(pos => pos.length));
+      const maxKeys = Object.keys(count).filter(k => count[k].length === maxCount);
+      let positions = [];
+      maxKeys.forEach(k => positions = positions.concat(count[k]));
+      return positions;
+    }
+    function isAllSame(arr) {
+      return arr.every(x => x === arr[0]);
+    }
+    function getMinOrMaxPos(arr, mode='min') {
+      const count = {};
+      arr.forEach((v,i)=> count[v]?count[v].push(i):count[v]=[i]);
+      const sorted = Object.entries(count).sort((a,b)=>(mode==='min'? a[1].length-b[1].length : b[1].length-a[1].length));
+      return sorted[0][1][0];
+    }
+    function analyze(){
+      let input = document.getElementById('combinedInput').value.trim().toLowerCase();
+      let raw = input.includes('/')?input.split('/') : input.split('');
+      if(raw.length!==6){ document.getElementById('predictionResult').innerText='❌ กรุณากรอกให้ครบ 6 ตัว'; return; }
+      let main=raw.slice(0,3), ref=raw.slice(3);
+      if(isAllSame(main)) [main, ref] = [ref, main];
+      // ตัวมากสุด: ทุกตำแหน่งที่มากสุดต้องเหมือนกันหมด
+      const maxPosArr = getAllMaxPositions(main);
+      let maxResult = "P";
+      for(let idx of maxPosArr) {
+        if(main[idx] !== ref[idx]) { maxResult = "B"; break; }
+      }
+      // ตัวน้อยสุดปกติ
+      const minPos=getMinOrMaxPos(main,'min');
+      const minResult = main[minPos]===ref[minPos]?'P':'B';
+      document.getElementById('predictionResult').innerHTML=`✅ ตัวน้อยสุด:<strong>${minResult}</strong> | ตัวมากสุด:<strong>${maxResult}</strong>`;
+      new Audio('https://freesound.org/data/previews/341/341695_6261194-lq.mp3').play();
+    }
+    function submitResult(actual){
+      let input=document.getElementById('combinedInput').value.trim().toLowerCase();
+      let raw=input.includes('/')?input.split('/') : input.split('');
+      if(raw.length!==6)return;
+      let main=raw.slice(0,3), ref=raw.slice(3);
+      if(isAllSame(main)) [main, ref] = [ref, main];
+      const maxPosArr = getAllMaxPositions(main);
+      let maxResult = "P";
+      for(let idx of maxPosArr) {
+        if(main[idx] !== ref[idx]) { maxResult = "B"; break; }
+      }
+      const minPos=getMinOrMaxPos(main,'min');
+      const minResult = main[minPos]===ref[minPos]?'P':'B';
+      backupDNA.push({dna1:[...dna1],dna2:[...dna2]});if(backupDNA.length>20)backupDNA.shift();
+      updateDNA(minResult,maxResult,actual);
+    }
+    function updateDNA(r1,r2,actual){
+      if(dna1.length>=50)dna1.shift(); if(dna2.length>=50)dna2.shift();
+      dna1.push(r1===actual?'⚪️':'🔴'); dna2.push(r2===actual?'⚪️':'🔴'); renderDNA();
+    }
+    function renderDNA(){
+      document.getElementById('dna1').innerText=dna1.join('');
+      document.getElementById('dna2').innerText=dna2.join('');
+      document.getElementById('percent1').innerText=`ความแม่นยำ:${percent(dna1)}|แนวโน้ม:${detectPattern(dna1)}`;
+      document.getElementById('percent2').innerText=`ความแม่นยำ:${percent(dna2)}|แนวโน้ม:${detectPattern(dna2)}`;
+      localStorage.setItem('dnaBackup',JSON.stringify({dna1,dna2}));
+    }
+    function percent(arr){let ok=arr.filter(e=>'⚪️'===e).length;return arr.length?((ok/arr.length*100).toFixed(1)+'%'):'-';}
+    function detectPattern(arr){const s=arr.map(e=>e==='⚪️'?'O':'X').join('');
+      if(/^(O+|X+)$/.test(s))return'มังกรยาว';if(/^(OX){3,}|(XO){3,}$/.test(s))return'ปิงปอง';
+      if(/^(OOXX|XXOO)+$/.test(s))return'สองตัดสอง';if(/^(OOX|XXO){2,}$/.test(s))return'สองหนึ่ง';
+      if(/^(OXOXOX)$/.test(s))return'สลับยาว';if(/^(OOOX|XXXO)$/.test(s))return'สามตัด';
+      if(/^(OXOXO)$/.test(s))return'ปิงปองสั้น';if(/^(OO|XX)(OX|XO)(OO|XX)$/.test(s))return'สองตัดกลาง';
+      return'ไม่แน่ชัด';}
+    function clearDNA(){dna1=[];dna2=[];backupDNA=[];localStorage.removeItem('dnaBackup');renderDNA();}
+    function undoDNA(){const last=backupDNA.pop();if(last){dna1=last.dna1;dna2=last.dna2;renderDNA();}}  
+  </script>
 </body>
 </html>
