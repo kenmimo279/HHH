@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧠 ทำนายบาคาร่า Vibes วัยรุ่น</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div style="background:#111; padding:15px; border-radius:12px; margin-bottom:20px; font-size:0.95rem; line-height:1.6; color:#f0f0f0">
+      <h2 style="color:#00ffe7; text-align:center; margin-top:0">📘 สูตรการทำนาย</h2>
+      <p><strong>สูตรตัวน้อยสุด:</strong> ดูจากฝ่ายที่มีความหลากหลายน้อยกว่าในเค้าไพ่หลักหรือรอง จากนั้นหาตัวที่มีจำนวนน้อยที่สุด และดูว่ามันอยู่ตำแหน่งไหน แล้วไปเปรียบเทียบตำแหน่งเดียวกันในอีกฝ่าย:</p>
+      <ul>
+        <li>ถ้าค่าเหมือนกัน → ทำนาย P</li>
+        <li>ถ้าค่าต่างกัน → ทำนาย B</li>
+      </ul>
+      <p><strong>สูตรตัวมากสุด:</strong> ใช้วิธีคล้ายกัน แต่เปลี่ยนเป็นตัวที่มีจำนวนมากที่สุดแทน:</p>
+      <ul>
+        <li>ถ้าตำแหน่งของตัวมากสุดตรงกันทั้งสองฝ่าย → ทำนาย P</li>
+        <li>ถ้าไม่ตรงกัน → ทำนาย B</li>
+      </ul>
+      <p><em>สูตรทั้งหมดจะเริ่มบันทึกผลจริงลง DNA ตั้งแต่รอบที่ 2 เป็นต้นไป</em></p>
+    </div>
+    <h1>🔮 ทำนายบาคาร่า Style วัยรุ่น</h1>
+    <div>
+      <label>เค้าไพ่หลัก (3 ตัว):</label>
+      <input id="mainInput" type="text" placeholder="เช่น p/b/b">
+      <label>เค้าไพ่รอง (3 ตัว):</label>
+      <input id="refInput" type="text" placeholder="เช่น p/p/b">
+      <button onclick="analyze()" class="btn-analyze">🔍 ทำนาย</button>
+      <div class="prediction-summary" id="predictionResult"></div>
+      <div class="btn-group">
+        <button onclick="submitResult('P')" class="btn-result">✔ ผลจริง P</button>
+        <button onclick="submitResult('B')" class="btn-result banker">✔ ผลจริง B</button>
+        <button onclick="submitResult('T')" class="btn-result tie">✔ ผลจริง T</button>
+        <button onclick="undoDNA()" class="btn-control">↩ ย้อนกลับ</button>
+      </div>
+    </div>
+
+    <div class="dna-box">
+      <h3>🧬 สถิติ DNA</h3>
+      <div class="btn-group">
+        <button onclick="clearDNA()" class="btn-control">🧹 ล้าง DNA</button>
+      </div>
+      <p class="dna-label">สูตรตัวน้อยสุด:</p>
+      <div id="dna1">-</div>
+      <div class="percent-box" id="percent1"></div>
+      <p class="dna-label">สูตรตัวมากสุด:</p>
+      <div id="dna2">-</div>
+      <div class="percent-box" id="percent2"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
