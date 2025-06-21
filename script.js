@@ -69,8 +69,7 @@
       const maxResult = target[maxPos]===compare[maxPos]?'P':'B';
       document.getElementById('predictionResult').innerHTML=`✅ ตัวน้อยสุด:<strong>${minResult}</strong> | ตัวมากสุด:<strong>${maxResult}</strong>`;
       new Audio('https://freesound.org/data/previews/341/341695_6261194-lq.mp3').play();
-      document.getElementById('combinedInput').value='';
-    }
+  
     function submitResult(actual){
       let input=document.getElementById('combinedInput').value.trim().toLowerCase();
       let raw=input.includes('/')?input.split('/') : input.split('');
