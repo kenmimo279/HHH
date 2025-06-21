@@ -1,0 +1,124 @@
+
+body {
+  background: #0f0f0f;
+  color: #fff;
+  font-family: 'Prompt', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #00ffe7;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #222;
+  color: #fff;
+}
+
+.btn-analyze {
+  background: #00ffe7;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-analyze:hover {
+  background: #00cfc7;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.btn-result, .btn-control {
+  flex: 1 1 30%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-result {
+  background-color: #222;
+  color: #00ffe7;
+  border: 1px solid #00ffe7;
+}
+
+.btn-result.banker {
+  background-color: #ff0033;
+  color: white;
+}
+
+.btn-result.tie {
+  background-color: #ffaa00;
+  color: black;
+}
+
+.btn-control {
+  background-color: #444;
+  color: white;
+  border: 1px solid #777;
+}
+
+.dna-box {
+  margin-top: 30px;
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.dna-label {
+  margin: 10px 0 4px;
+  color: #00ffe7;
+}
+
+#dna1, #dna2 {
+  font-size: 20px;
+  padding: 8px;
+  background: #222;
+  border-radius: 8px;
+  min-height: 40px;
+  white-space: pre-wrap;
+}
+
+.percent-box {
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.prediction-summary {
+  background: #222;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #0f0;
+}
